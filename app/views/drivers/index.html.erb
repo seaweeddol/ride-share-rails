@@ -1,0 +1,24 @@
+<h1>Drivers List</h1>
+<%= link_to "Add Driver", new_driver_path %>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">VIN</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @drivers.each do |driver|  %>
+        <tr>
+            <%# <th scope="row">1</th> %>
+            <td><%= driver.id %></td>
+            <td><%= link_to driver.name, driver_path(driver) %></td>
+            <td><%= driver.vin %></td>
+            <td> <%= driver.available %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

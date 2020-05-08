@@ -5,23 +5,18 @@ describe DriversController do
 
   describe "index" do
     it "responds with success when there are many drivers saved" do
-      # Arrange
-      # Ensure that there is at least one Driver saved
-
-      # Act
-
+      get drivers_path
+      
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with success when there are no drivers saved" do
-      # Arrange
-      # Ensure that there are zero drivers saved
-
       # Act
-
+      get root_path
+      
       # Assert
-
+      must_respond_with :success
     end
   end
 

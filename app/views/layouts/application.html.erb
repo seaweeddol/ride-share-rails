@@ -14,7 +14,7 @@
     <h1>Ada Ride Share</h1>
     <div class="dropdown">
         <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false">
-            Home
+            <%= link_to "Home", root_path %>
         </button>
     </div>
     <div class="dropdown">
@@ -22,8 +22,8 @@
             Drivers
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Drivers</a>
-            <a class="dropdown-item" href="#">Add driver</a>
+            <%= link_to "Drivers", drivers_path, class: "dropdown-item" %>
+            <%= link_to "Add Driver", new_driver_path, class: "dropdown-item" %>
         </div>
     </div>
     <div class="dropdown">
@@ -31,8 +31,8 @@
             Passengers
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Passenger</a>
-            <a class="dropdown-item" href="#">Add Passenger</a>
+            <%= link_to "Passengers", passengers_path, class: "dropdown-item" %>
+            <%= link_to "Add Passenger", new_passenger_path, class: "dropdown-item" %>
         </div>
     </div>
     <%= yield %>

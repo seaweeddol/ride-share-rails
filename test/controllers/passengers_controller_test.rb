@@ -2,9 +2,9 @@ require "test_helper"
 
 describe PassengersController do
   let (:passenger) {
-    Passenger.create name: "sample passenger", phone: "#123-345-4567",
+    Passenger.create name: "sample passenger", phone: "#123-345-4567"
   }
-
+ 
   describe "index" do
     it "can get the index path" do
       # Act
@@ -24,26 +24,143 @@ describe PassengersController do
   end
 
   describe "show" do
-    # Your tests go here
+    it "can get a valid passenger" do
+      # skip
+      # Act
+      get passenger_path(passenger.id)
+      
+      # Assert
+      must_respond_with :success
+    end
+    
+    it "will redirect for an invalid passenger" do
+      # skip
+      # Act
+      get passenger_path(-1)
+      
+      # Assert
+      must_respond_with :redirect
+    end
   end
 
   describe "new" do
-    # Your tests go here
+    it "can get the new passenger page" do
+      # skip
+      
+      # Act
+      get new_passenger_path
+      
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "create" do
-    # Your tests go here
+    it "can create a new passenger" do
+      # skip
+      
+      # Arrange
+      passenger_hash = {
+        passenger: {
+          name: "new passenger",
+          phone_number: "new passenger phone number",
+        },
+      }
+      
+      # Act-Assert
+      expect {
+        post passengers_path, params: passenger_hash
+      }.must_change "Passenger.count", 1
+      
+      new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
+      expect(new_passenger.description).must_equal passenger_hash[:passenger][:description]
+      expect(new_passenger.completed_at).must_equal passenger_hash[:passenger][:completed_at]
+      
+      must_respond_with :redirect
+      must_redirect_to passenger_path(new_passenger.id)
+    end
   end
 
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for an existing passenger" do
+      get edit_passenger_path(passenger.id)
+      
+      # Assert
+      must_respond_with :success
+    end
+    
+    it "will respond with redirect when attempting to edit a nonexistant passenger" do
+      get edit_passenger_path(-1)
+      
+      # Assert
+      must_redirect_to root_path
+    end
   end
 
   describe "update" do
-    # Your tests go here
+    # Note:  If there was a way to fail to save the changes to a passenger, that would be a great
+    #        thing to test.
+    it "can update an existing passenger" do
+      # Arrange
+      passenger_hash = {
+        passenger: {
+          name: "updating this passenger",
+          phone_number: "new passenger phone number",
+        },
+      }
+
+      #create a new passenger using the let block
+      passenger
+      
+      # Act-Assert
+      expect {
+        patch passenger_path(passenger[:id]), params: passenger_hash
+      }.must_differ "Passenger.count", 0
+      
+      updated_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
+      expect(updated_passenger.description).must_equal passenger_hash[:passenger][:description]
+      expect(updated_passenger.name).must_equal passenger_hash[:passenger][:name]
+      
+      must_redirect_to passenger_path(updated_passenger.id)
+    end
+    
+    it "will redirect to the root page if given an invalid id" do
+      # Arrange
+      passenger_hash = {
+        passenger: {
+          name: "updating this passenger",
+          phone_number: "new passenger phone number",
+        },
+      }
+      
+      # Act-Assert
+      expect {
+        patch passenger_path(-1), params: passenger_hash
+      }.must_differ "Passenger.count", 0
+            
+      must_redirect_to root_path
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "deletes passenger when valid id is provided and redirects to root" do
+      passenger  
+      # Act-Assert
+      expect {
+        delete passenger_path(passenger[:id])
+      }.must_differ "Passenger.count", -1
+            
+      must_redirect_to root_path
+    end
+
+    it "does not change anything when invalid id is provided and redirects to root" do
+      passenger  
+      # Act-Assert
+      expect {
+        delete passenger_path(-1)
+      }.must_differ "Passenger.count", 0
+            
+      must_respond_with :not_found
+    end
   end
 end
