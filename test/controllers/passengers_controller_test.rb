@@ -1,8 +1,26 @@
 require "test_helper"
 
 describe PassengersController do
+  let (:passenger) {
+    Passenger.create name: "sample passenger", phone: "#123-345-4567",
+  }
+
   describe "index" do
-    # Your tests go here
+    it "can get the index path" do
+      # Act
+      get passengers_path
+      
+      # Assert
+      must_respond_with :success
+    end
+    
+    it "can get the root path" do
+      # Act
+      get root_path
+      
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "show" do

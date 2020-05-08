@@ -13,12 +13,26 @@
 <body>
     <h1>Ada Ride Share</h1>
     <div class="dropdown">
+        <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false">
+            Home
+        </button>
+    </div>
+    <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Drivers
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Drivers</a>
             <a class="dropdown-item" href="#">Add driver</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Passengers
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Passenger</a>
+            <a class="dropdown-item" href="#">Add Passenger</a>
         </div>
     </div>
     <%= yield %>
