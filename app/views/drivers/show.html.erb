@@ -1,0 +1,42 @@
+<div>
+    <header>
+        <h4><%= @driver.name %></h4>
+    </header>
+    <p>VIN: <%= @driver.vin %></p>
+    <p>Status: <%= @driver.available %></p>
+    <%# <p>Total Earnings: <%= @driver.total_earnings %>
+    <%# <p>Average Rating: <%= @driver.average_rating %></p>
+    <p>
+        <%= link_to "Edit", edit_driver_path(@driver.id)%> |
+        <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %> 
+        <%# <%= link_to "Add a trip", new_trip_path(@driver.id) %> 
+        <%# ToDo if there is a driver id passed, display that in the form, %>
+
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Trip date</th>
+                <th scope="col">Passenger Name</th>
+                <th scope="col">Driver Name</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @driver.trips.each do |trip|  %>
+            <tr>
+                <td><%= trip.id %></td>
+                <td><%= trip.date.to_s %></td>
+                <td><%= Passenger.find_by(id: trip.passenger_id).name %></td>
+                <% @driver.name %>
+                <td><%= @driver.name %></td>
+                <td><%= trip.rating %></td>
+                <td><%= trip.cost %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
