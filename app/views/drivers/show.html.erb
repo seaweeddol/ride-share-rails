@@ -30,8 +30,20 @@
             <tr>
                 <td><%=link_to trip.id, trip_path(trip.id)  %></td>
                 <td><%= trip.date.to_s %></td>
-                <td><%= link_to Passenger.find_by(id: trip.passenger_id).name, passenger_path(trip.passenger_id)  %> </td>
-                <td><%= link_to Driver.find_by(id: trip.driver_id).name, driver_path(trip.driver_id)  %> </td>
+                <td>
+                    <% if Passenger.find_by(id: trip.passenger_id) %>
+                    <%= link_to Passenger.find_by(id: trip.passenger_id).name, passenger_path(trip.passenger_id) %>
+                    <% else %>
+                    No passenger on file
+                    <% end %>
+                </td>
+                <td>
+                    <% if Driver.find_by(id: trip.driver_id) %>
+                    <%= link_to Driver.find_by(id: trip.driver_id).name, driver_path(trip.driver_id) %>
+                    <% else %>
+                    No driver on file
+                    <% end %>
+                </td>
                 <td><%= trip.rating %></td>
                 <td><%= trip.cost %></td>
             </tr>

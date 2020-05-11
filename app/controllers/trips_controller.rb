@@ -10,8 +10,7 @@ class TripsController < ApplicationController
 
   def create
     if params[:passenger_id]
-      trip = Trip.new(Trip.new_trip(params[:passenger_id]))
-      trip.save
+      trip = Trip.new_trip(params[:passenger_id])
       redirect_to trip_path(trip.id)
     else
       # if create fails, show an error message on the passenger page?

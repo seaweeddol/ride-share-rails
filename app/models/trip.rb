@@ -2,20 +2,24 @@ class Trip < ApplicationRecord
     belongs_to :passenger
     belongs_to :driver
 
-    # make this a class method instead of instance method
     def self.new_trip(passenger_id)
-        # business logic to set random cost & choose driver & trip date
-        return {
+        parameters = {
             driver_id: Trip.choose_available_driver, 
-            passenger_id: passenger_id, # send data as a parameter when calling it from the controller
+            passenger_id: passenger_id,
             date: Time.now.to_s,
             rating: nil,
             cost: Trip.random_cost
         }
+        trip = Trip.new(parameters)
+        trip.save
+  
+        return trip
     end
 
     def self.choose_available_driver
-        return Driver.find_by(available:true).id
+        driver = Driver.find_by(available:true)
+        Driver.update(driver.id, :available => false)      
+        return driver.id
     end
 
     def self.random_cost
