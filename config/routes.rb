@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   resources :pages, only: [:index]
 
   resources :applications
-  resources :trips
-  resources :passengers
+  resources :trips 
+  resources :passengers do 
+    resources :trips , only: [:index]
+  end
   resources :drivers
 
 end
