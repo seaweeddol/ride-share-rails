@@ -7,8 +7,8 @@
         <p><strong>Trip date:</strong> <%= @trip.date.to_s %></p>
         <p><strong>Trip cost:</strong> <%= @trip.cost %></p>
         <p><strong>Trip rating:</strong> <%= @trip.rating %></p>
-        <p><strong>Passenger name:</strong> <%= Passenger.find_by(id: @trip.passenger_id).name %></p>
-        <p><strong>Driver name:</strong> <%= Driver.find_by(id: @trip.driver_id).name %></p>
+        <p><strong>Passenger name:</strong> <%= link_to Passenger.find_by(id: @trip.passenger_id).name, passenger_path(@trip.passenger_id)  %></p>
+        <p><strong>Driver name:</strong>  <%= link_to Driver.find_by(id: @trip.driver_id).name, driver_path(@trip.driver_id)  %></p>
 
         <%= link_to "Edit trip", edit_trip_path(@trip.id)%> |
         <%= link_to "Delete trip", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %> 

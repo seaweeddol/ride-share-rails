@@ -25,11 +25,10 @@
         <tbody>
             <% @passenger.trips.each do |trip|  %>
             <tr>
-                <td><%= trip.id %></td>
+                <td><%=link_to trip.id, trip_path(trip.id)  %></td>
                 <td><%= trip.date.to_s %></td>
-                <td><%= @passenger.name %></td>
-                <% @driver = Driver.find_by(id: trip.driver_id) %>
-                <td><%= @driver.name %></td>
+                <td><%= link_to Passenger.find_by(id: trip.passenger_id).name, passenger_path(trip.passenger_id)  %> </td>
+                <td><%= link_to Driver.find_by(id: trip.driver_id).name, driver_path(trip.driver_id)  %> </td>
                 <td><%= trip.rating %></td>
                 <td><%= trip.cost %></td>
             </tr>
