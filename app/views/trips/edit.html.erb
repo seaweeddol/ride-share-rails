@@ -1,18 +1,32 @@
 <%= form_with model: @trip, class: 'create-trip' do |f| %>
 <p>Edit trip:</p>
 
-<%= f.label :date %>
-<%= f.text_field :date %>
+<div>
+  <%= f.label :date %>
+  <%= f.date_field :date, value: @trip.date %>
+</div>
 
-<%= f.label :cost %>
-<%= f.text_field :cost %>
+<div>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+</div>
 
-<%= f.label :rating %>
-<%= f.select :rating, [1, 2, 3, 4, 5] %>
+<div>
+  <%= f.label :rating %>
+  <%= f.select :rating, [1, 2, 3, 4, 5] %>
+</div>
 
-<%= f.label :driver_id %>
-<%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+<div>
+  <%= f.label :passenger_id %>
+  <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+</div>
 
+<div>
+  <%= f.label :driver_id %>
+  <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+</div>
 
-<%= f.submit "Submit edits", class: "trip_button" %>
+<div>
+  <%= f.submit "Submit edits", class: "trip_button" %>
+</div>
 <% end %>
