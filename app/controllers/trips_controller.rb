@@ -32,6 +32,7 @@ end
       head :not_found
       return 
     elsif @trip.update(
+        
         rating: params[:trip][:rating],
     )
         redirect_to request.referrer
@@ -57,5 +58,21 @@ end
         return
     end
   end 
+
+  def destroy
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      head :not_found
+      return
+    elsif @trip.destroy
+      redirect_to root_path
+      return
+    else
+      render :show
+      return
+    end
+  end
+
 
 end

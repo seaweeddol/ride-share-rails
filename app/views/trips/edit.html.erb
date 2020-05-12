@@ -1,0 +1,18 @@
+<%= form_with model: @trip, class: 'create-trip' do |f| %>
+<p>Edit trip:</p>
+
+<%= f.label :date %>
+<%= f.text_field :date %>
+
+<%= f.label :cost %>
+<%= f.text_field :cost %>
+
+<%= f.label :rating %>
+<%= f.select :rating, [1, 2, 3, 4, 5] %>
+
+<%= f.label :driver_id %>
+<%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+
+
+<%= f.submit "Submit edits", class: "trip_button" %>
+<% end %>
