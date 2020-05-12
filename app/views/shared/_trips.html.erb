@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Trip date</th>
+      <th scope="col">Passenger Name</th>
+      <th scope="col">Driver Name</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% user_type.trips.each do |trip| %>
+    <tr>
+      <td><%=link_to trip.id, trip_path(trip.id)  %></td>
+      <td><%= trip.date.to_s %></td>
+      <td>
+        <% if Passenger.find_by(id: trip.passenger_id) %>
+        <%= link_to Passenger.find_by(id: trip.passenger_id).name, passenger_path(trip.passenger_id) %>
+        <% else %>
+        No passenger on file
+        <% end %>
+      </td>
+      <td>
+        <% if Driver.find_by(id: trip.driver_id) %>
+        <%= link_to Driver.find_by(id: trip.driver_id).name, driver_path(trip.driver_id) %>
+        <% else %>
+        No driver on file
+        <% end %>
+      </td>
+      <td><%= trip.rating %></td>
+      <td><%= trip.cost %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
