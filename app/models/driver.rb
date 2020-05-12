@@ -1,5 +1,10 @@
 class Driver < ApplicationRecord
     has_many :trips, dependent: :nullify # nullify allows Driver to be deleted without deleting the Driver's trips
+    validates :name, presence: true
+    validates :vin, presence: true
+    validates :available, presence: true
+
+
 
     def average_rating
         driver = Driver.find_by(id: id)

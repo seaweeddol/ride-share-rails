@@ -1,6 +1,9 @@
 class Trip < ApplicationRecord
     belongs_to :passenger
     belongs_to :driver
+    validates :driver_id, presence: true, numericality: { only_integer: true}
+    validates :passenger_id, presence: true, numericality: { only_integer: true}
+    validates :cost, presence: true
 
     def self.new_trip(passenger_id)
         parameters = {

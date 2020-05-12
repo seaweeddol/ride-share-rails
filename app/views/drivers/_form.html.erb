@@ -1,20 +1,31 @@
+<% if @driver.errors.any? %>
+<ul class="errors">
+    <% @driver.errors.each do |column, message| %>
+    <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+    </li>
+    <% end %>
+</ul>
+<% end %>
+
+
 <%= form_with model: @driver, class: 'create-driver' do |f| %>
-  <div>
+<div>
     <%= f.label :name %>
     <%= f.text_field :name %>
-  </div>
+</div>
 
-  <div>
+<div>
     <%= f.label :vin %>
     <%= f.text_field :vin %>
-  </div>
+</div>
 
-  <div>
+<div>
     <%= f.label :available %>
     <%= f.select :available, [["available", true], ["not available", false]] %>
-  </div>
+</div>
 
-  <div>
+<div>
     <%= f.submit "Save driver", class: "driver_button" %>
-  </div>
+</div>
 <% end %>
