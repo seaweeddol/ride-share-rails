@@ -47,7 +47,7 @@ class DriversController < ApplicationController
           vin: params[:driver][:vin],
           available: params[:driver][:available]
       )
-          redirect_to drivers_path
+          redirect_to driver_path(@driver.id)
           return
       else
           render :edit
