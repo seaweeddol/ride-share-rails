@@ -32,11 +32,14 @@ end
       head :not_found
       return 
     elsif @trip.update(
-        
-        rating: params[:trip][:rating],
+      date: params[:trip][:date],
+      cost: params[:trip][:cost],
+      rating: params[:trip][:rating],
+      passenger_id: params[:trip][:passenger_id],
+      driver_id: params[:trip][:driver_id],
     )
-        redirect_to request.referrer
-        return
+      redirect_to trip_path(@trip.id)
+      return
     else
         render :edit
         return
