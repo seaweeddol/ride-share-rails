@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :trips , only: [:index]
   end
 
+  patch 'trip/:id/rating', to: 'trips#update_trip_rating', as: 'update_trip_rating'
   patch 'driver/:id/available', to: 'drivers#update_driver_status', as: 'update_driver_status'
 
 end

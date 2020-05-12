@@ -6,12 +6,8 @@
         <p><strong>Trip ID:</strong> <%= @trip.id %></p>
         <p><strong>Trip date:</strong> <%= @trip.date.to_s %></p>
         <p><strong>Trip cost:</strong> <%= @trip.cost %></p>
-        <%# <p><strong>Trip rating:</strong> <%= @trip.rating %>
-        <%# </p> %>
-        <p><strong>Trip Rating:</strong></p>
-        <% @trip.blank_stars.to_i.times do %>
-        <span class="glyphicon glyphicon-star-empty">1</span>
-        <% end %>
+        <p><strong>Trip rating:</strong> <%= @trip.rating %></p>
+
         <p><strong>Passenger name:</strong>
             <% if Passenger.find_by(id: @trip.passenger_id) %>
             <%= link_to Passenger.find_by(id: @trip.passenger_id).name, passenger_path(@trip.passenger_id) %>
@@ -27,7 +23,11 @@
             <% end %>
         </p>
 
-        <%= link_to "Edit trip", edit_trip_path(@trip.id)%> |
-        <%= link_to "Delete trip", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %> 
+        <h2> Update trip rating </h2>
+        <% 5.times do |i|%>
+        <%= link_to i+1, update_trip_rating_path(rating_value: i+1), method: :Patch %>
+        <% end %>
+
+        <p><%= link_to "Delete trip", trip_path(@trip), method: :delete, data: {confirm: "Are you sure?"} %> </p>
 
 </div>

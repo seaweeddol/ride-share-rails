@@ -1,0 +1,11 @@
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+<p>Passenger:</p>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :phone_number %>
+<%= f.text_field :phone_number %>
+
+<%= f.submit action_name, class: "passenger_button" %>
+<% end %>

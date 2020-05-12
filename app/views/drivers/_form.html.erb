@@ -1,0 +1,14 @@
+<%= form_with model: @driver, class: 'create-driver' do |f| %>
+<p>Driver:</p>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :vin %>
+<%= f.text_field :vin %>
+
+<%= f.label :available %>
+<%= f.select :available, [["available", true], ["not available", false]] %>
+
+<%= f.submit "Save driver", class: "driver_button" %>
+<% end %>
