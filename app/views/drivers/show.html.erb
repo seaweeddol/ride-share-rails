@@ -3,10 +3,10 @@
         <h4><%= @driver.name %></h4>
     </header>
     <p>VIN: <%= @driver.vin %></p>
-    <p>Status: <%= @driver.available %></p>
+    <p>Status: <%=  @driver.available ? "Available" : "Not Available" %></p>
     <% mark_available= (!@driver.available) ? 'Mark Available' : 'Mark Unavailable' %>
     <% mark_available_css= (!@driver.available) ? "btn btn-outline-warning": "btn btn-outline-success" %>
-    <%= link_to mark_available, update_driver_status_path(@driver), method: :Patch, class: "mark_available_css" %>
+    <%= link_to mark_available, update_driver_status_path(@driver), method: :Patch, class: "btn btn-outline-success" %>
 </div>
 <%# <% end %>
 <%# <p>Total Earnings: <%= @driver.total_earnings %>

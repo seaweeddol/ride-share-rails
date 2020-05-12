@@ -1,59 +1,14 @@
-<div>
-    <header>
-        <h4><%= @driver.name %></h4>
-    </header>
-    <p>VIN: <%= @driver.vin %></p>
-    <p>Status: <%= @driver.available %></p>
-    <% mark_available= (!@driver.available) ? 'Mark Available' : 'Mark Unavailable'
-    <% <% mark_available_css= (!driver.available) ? "btn btn-outline-warning": "btn btn-outline-success" %> %>
-    <% <%= link_to @driver.name, driver_path(@driver), class: css_class.concat("") %>
-    <% <%= link_to mark_available_link, update_driver_status_path(driver), method: :Patch, class:mark_available_css %>
-</div> %> %>
-<%# <% end %> %> %>
-<%# <p>Total Earnings: <%= @driver.total_earnings %>
-<%# <p>Average Rating: <%= @driver.average_rating %></p>
-<p>
-    <%= link_to "Edit", edit_driver_path(@driver.id)%> |
-    <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %> 
-    <%# <%= link_to "Add a trip", new_trip_path(@driver.id) %> 
-    <%# ToDo if there is a driver id passed, display that in the form, %>
+<%= form_with model: @driver, class: 'create-driver' do |f| %>
+<p>Driver:</p>
 
-</p>
+<%= f.label :name %>
+<%= f.text_field :name %>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Trip date</th>
-            <th scope="col">Passenger Name</th>
-            <th scope="col">Driver Name</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Cost</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @driver.trips.each do |trip|  %>
-        <tr>
-            <td><%=link_to trip.id, trip_path(trip.id)  %></td>
-            <td><%= trip.date.to_s %></td>
-            <td>
-                <% if Passenger.find_by(id: trip.passenger_id) %>
-                <%= link_to Passenger.find_by(id: trip.passenger_id).name, passenger_path(trip.passenger_id) %>
-                <% else %>
-                No passenger on file
-                <% end %>
-            </td>
-            <td>
-                <% if Driver.find_by(id: trip.driver_id) %>
-                <%= link_to Driver.find_by(id: trip.driver_id).name, driver_path(trip.driver_id) %>
-                <% else %>
-                No driver on file
-                <% end %>
-            </td>
-            <td><%= trip.rating %></td>
-            <td><%= trip.cost %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-</div>
+<%= f.label :vin %>
+<%= f.text_field :vin %>
+
+<%= f.label :available %>
+<%= f.select :available, [["available", true], ["not available", false]] %>
+
+<%= f.submit "Save driver", class: "driver_button" %>
+<% end %>
