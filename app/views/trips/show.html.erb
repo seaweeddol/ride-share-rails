@@ -6,7 +6,12 @@
         <p><strong>Trip ID:</strong> <%= @trip.id %></p>
         <p><strong>Trip date:</strong> <%= @trip.date.to_s %></p>
         <p><strong>Trip cost:</strong> <%= @trip.cost %></p>
-        <p><strong>Trip rating:</strong> <%= @trip.rating %></p>
+        <%# <p><strong>Trip rating:</strong> <%= @trip.rating %>
+        <%# </p> %>
+        <p><strong>Trip Rating:</strong></p>
+        <% @trip.blank_stars.to_i.times do %>
+        <span class="glyphicon glyphicon-star-empty">1</span>
+        <% end %>
         <p><strong>Passenger name:</strong>
             <% if Passenger.find_by(id: @trip.passenger_id) %>
             <%= link_to Passenger.find_by(id: @trip.passenger_id).name, passenger_path(@trip.passenger_id) %>

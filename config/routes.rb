@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     resources :trips , only: [:index]
   end
 
+  patch 'driver/:id/available', to: 'drivers#update_driver_status', as: 'update_driver_status'
+
 end

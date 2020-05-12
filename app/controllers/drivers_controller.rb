@@ -12,6 +12,23 @@ class DriversController < ApplicationController
       end
     end
 
+    def new
+      @driver = Driver.new 
+    end
+
+    def create
+      @driver = Driver.new(driver_params) 
+      if @driver.save 
+        flash[:success] = "Driver added successfully"
+        redirect_to driver_path(@driver.id)
+        return
+      else # save failed :(
+        flash.now[:error] = "Something happened. Driver not added."
+        render :new, status: :bad_request
+        return
+      end
+    end
+
     def destroy
       @driver = Driver.find_by(id: params[:id])
       # @driver.trips.each do |trip|
@@ -28,6 +45,29 @@ class DriversController < ApplicationController
         render :show
         return
       end
+    end
+
+    def update_driver_status
+      @driver= Driver.find_by(id: params[:id])
+      if @driver.available == false || @driver.available == nil
+          if @driver.update(
+             available: true
+          ) 
+              redirect_to request.referrer
+              return
+          end
+        else
+          if @driver.update(
+            available: false
+          ) 
+          redirect_to request.referrer
+          return
+        end
+      end
+    end
+
+    def driver_params
+      return params.require(:driver).permit(:name, :vin, :available)
     end
 end
 

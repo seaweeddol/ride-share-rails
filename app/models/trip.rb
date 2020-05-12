@@ -25,4 +25,8 @@ class Trip < ApplicationRecord
     def self.random_cost
       return (1..5000).to_a.sample
     end
+
+    def blank_stars
+        5 
+    end
 end
