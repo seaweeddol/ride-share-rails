@@ -1,11 +1,4 @@
-<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
-<p>Passenger:</p>
-
-<%= f.label :name %>
-<%= f.text_field :name %>
-
-<%= f.label :phone_number %>
-<%= f.text_field :phone_number %>
-
-<%= f.submit "Save passenger", class: "passenger_button" %>
-<% end %>
+<header>
+  <h3>Edit passenger</h3>
+</header>
+<%= render partial: "form" %>
