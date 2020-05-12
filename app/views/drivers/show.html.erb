@@ -2,10 +2,10 @@
     <header>
         <h4><%= @driver.name %></h4>
     </header>
-    <p>VIN: <%= @driver.vin %></p>
-    <p>Status: <%=  @driver.available ? "Available" : "Not Available" %></p>
-    <p>Average Rating: <%= @driver.average_rating %></p>
-    <p>Total Earnings: <%= @driver.total_revenue %> </p>
+    <p><strong>VIN</strong>: <%= @driver.vin %></p>
+    <p><strong>Status</strong>: <%=  @driver.available ? "Available" : "Not Available" %></p>
+    <p><strong>Average Rating</strong>: <%= @driver.average_rating %></p>
+    <p><strong>Total Earnings</strong>: $<%= @driver.total_revenue %> </p>
 
 
     <% mark_available= (!@driver.available) ? 'Mark Available' : 'Mark Unavailable' %>
