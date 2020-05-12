@@ -3,8 +3,8 @@ class TripsController < ApplicationController
     trip_id = params[:id]
     @trip = Trip.find_by(id: trip_id)
     if @trip.nil?
-        head :not_found
-        return
+      head :not_found
+      return
     end
   end
 
@@ -21,8 +21,8 @@ class TripsController < ApplicationController
   def edit
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-        head :not_found
-        return
+      head :not_found
+      return
     end
 end
 
@@ -41,24 +41,24 @@ end
       redirect_to trip_path(@trip.id)
       return
     else
-        render :edit
-        return
+      render :edit
+      return
     end
   end
 
   def update_trip_rating
-  @trip= Trip.find_by(id: params[:id])
+  @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
       head :not_found
       return 
     elsif @trip.update(
       rating: params[:rating_value],
     )
-        redirect_to trip_path
-        return
+      redirect_to trip_path
+      return
     else
-        render :edit
-        return
+      render :edit
+      return
     end
   end 
 
