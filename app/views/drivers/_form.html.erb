@@ -9,7 +9,7 @@
 <% end %>
 
 
-<%= form_with model: @driver, class: 'create-driver' do |f| %>
+<%= form_with model: @driver do |f| %>
 <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -26,6 +26,6 @@
 </div>
 
 <div>
-    <%= f.submit "Save driver", class: "driver_button" %>
+    <%= f.submit "Save driver", class: "btn btn-primary" %>
 </div>
 <% end %>

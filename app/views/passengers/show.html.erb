@@ -1,17 +1,26 @@
-<div>
-    <header>
-        <h3><%= @passenger.name %></h3>
-    </header>
-    <p><strong>Phone Number</strong>: <%= @passenger.phone_number %></p>
-    <p><strong>Average Rating</strong>: <%= @passenger.average_rating %></p>
-    <p><strong>Total Spent</strong>: $<%= @passenger.total_spent %> </p>
+<% # card styling from [source here]%>
+<div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+    <div class="card testimonial-card">
+        <div class="card-up blue"></div>
+        <div class="avatar mx-auto white">
+            <img src="/assets/profile_img.jpeg" class="rounded-circle img-fluid">
+        </div>
+        <div class="card-body">
 
+            <h4 class="font-weight-bold mb-4"> <%= @passenger.name %></h4>
 
-    <p>
-        <%= link_to "Add a Trip", passenger_trips_path(@passenger.id), method: :post %> |
-        <%= link_to "Edit", edit_passenger_path(@passenger.id)%> |
-        <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %> 
-    </p>
+            <p><strong>Phone Number</strong>: <%= @passenger.phone_number %></p>
+            <p><strong>Average Rating</strong>: <%= @passenger.average_rating %></p>
+            <p><strong>Total Spent</strong>: $<%= @passenger.total_spent %> </p>
 
-    <%= render partial: "./shared/trips", locals: { user_type: @passenger } %>
+            <p>
+                <%= link_to "Add a Trip", passenger_trips_path(@passenger.id), method: :post, class: "btn btn-primary" %> |
+                <%= link_to "Edit", edit_passenger_path(@passenger.id), class: "btn btn-primary"%> |
+                <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-primary" %> 
+            </p>
+
+        </div>
+    </div>
 </div>
+
+<%= render partial: "./shared/trips", locals: { user_type: @passenger } %>

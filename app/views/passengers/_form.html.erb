@@ -9,7 +9,7 @@
 <% end %>
 
 
-<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+<%= form_with model: @passenger do |f| %>
 <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -21,6 +21,6 @@
 </div>
 
 <div>
-    <%= f.submit action_name, class: "passenger_button" %>
+    <%= f.submit action_name, class: "btn btn-primary" %>
 </div>
 <% end %>

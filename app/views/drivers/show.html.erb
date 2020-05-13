@@ -1,24 +1,26 @@
-<div>
-    <header>
-        <h4><%= @driver.name %></h4>
-    </header>
-    <p><strong>VIN</strong>: <%= @driver.vin %></p>
-    <p><strong>Status</strong>: <%=  @driver.available ? "Available" : "Not Available" %></p>
-    <p><strong>Average Rating</strong>: <%= @driver.average_rating %></p>
-    <p><strong>Total Earnings</strong>: $<%= @driver.total_revenue %> </p>
+<% # card styling from [source here]%>
+<div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+    <div class="card testimonial-card">
+        <div class="card-up blue"></div>
+        <div class="avatar mx-auto white">
+            <img src="/assets/profile_img.jpeg" class="rounded-circle img-fluid">
+        </div>
+        <div class="card-body">
+
+            <h4 class="font-weight-bold mb-4"> <%= @driver.name %></h4>
+
+            <p><strong>VIN</strong>: <%= @driver.vin %></p>
+            <p><strong>Status</strong>: <%=  @driver.available ? "Available" : "Not Available" %></p>
+            <p><strong>Average Rating</strong>: <%= @driver.average_rating %></p>
+            <p><strong>Total Earnings</strong>: $<%= @driver.total_revenue %> </p>
 
 
-    <% mark_available= (!@driver.available) ? 'Mark Available' : 'Mark Unavailable' %>
-    <% mark_available_css = (@driver.available) ? "btn btn-outline-warning": "btn btn-outline-success" %>
-    <%= link_to mark_available, update_driver_status_path(@driver), method: :Patch, class: mark_available_css %>
+            <% mark_available= (!@driver.available) ? 'Mark Available' : 'Mark Unavailable' %>
+            <% mark_available_css = (@driver.available) ? "btn btn-outline-warning": "btn btn-outline-success" %>
+            <%= link_to mark_available, update_driver_status_path(@driver), method: :Patch, class: mark_available_css %>
+
+        </div>
+    </div>
 </div>
-<p>
-    <%= link_to "Edit", edit_driver_path(@driver.id)%> |
-    <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %> 
-    <%# <%= link_to "Add a trip", new_trip_path(@driver.id) %> 
-    <%# ToDo if there is a driver id passed, display that in the form, %>
 
-</p>
-
-    <%= render partial: "./shared/trips", locals: { user_type: @driver } %>
-</div>
+<%= render partial: "./shared/trips", locals: { user_type: @driver } %>

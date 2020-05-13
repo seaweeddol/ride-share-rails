@@ -1,5 +1,5 @@
 <h1>Drivers List</h1>
-<%= link_to "Add Driver", new_driver_path %>
+<%= link_to "Add Driver", new_driver_path, class: "btn btn-primary" %>
 
 <table class="table">
     <thead>
@@ -17,7 +17,7 @@
             <td><%= driver.id %></td>
             <td><%= link_to driver.name, driver_path(driver) %></td>
             <td><%= driver.vin %></td>
-            <td> <%= driver.available %></td>
+            <td><%= driver.available ? "Available" : "Not Available" %></td>
         </tr>
         <% end %>
     </tbody>
