@@ -197,29 +197,21 @@ describe DriversController do
     end
   end
 
-  # describe "toggle available and not available driver" do
-  #   it "changes available to false if it is true" do
-  #     # Arrange
-  #     driver_hash = {
-  #       driver: {
-  #         name: "test driver",
-  #         vin: "a driver",
-  #         available: false
-  #       },
-  #     }
-
-  #     driver
+  describe "toggle available and not available driver" do
+    it "changes available to false if it is true" do
+      # Arrange
+      driver
       
-  #     # Act-Assert
-  #     expect {
-  #       patch update_driver_status_path(driver[:id]), params: driver_hash
-  #     }.must_differ "Driver.count", 0
+      # Act-Assert
+      expect {
+        patch update_driver_status_path(driver[:id])
+      }.must_differ "Driver.count", 0
       
-  #     updated_driver = Driver.find_by(name: driver_hash[:driver][:name])
-  #     expect(updated_driver.available).must_not_equal driver_hash[:driver][:available]
+      updated_driver = Driver.find_by(id: driver[:id])
+      expect(updated_driver.available).must_equal false
       
-  #   end
-  # end
+    end
+  end
 
   describe "destroy" do
     it "destroys the driver instance in db when driver exists, then redirects" do
