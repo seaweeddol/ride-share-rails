@@ -73,12 +73,12 @@ class DriversController < ApplicationController
     @driver= Driver.find_by(id: params[:id])
     if @driver.available == false || @driver.available == nil
       if @driver.update(available: true) 
-        redirect_to request.referrer
+        redirect_to driver_path(@driver.id)
         return
       end
     else
       if @driver.update(available: false) 
-        redirect_to request.referrer
+        redirect_to driver_path(@driver.id)
         return
       end
     end
