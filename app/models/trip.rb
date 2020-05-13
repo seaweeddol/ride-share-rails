@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
         parameters = {
             driver_id: Trip.choose_available_driver, 
             passenger_id: passenger_id,
-            date: Time.now.to_s,
+            date: Date.today.to_s,
             rating: nil,
             cost: Trip.random_cost
         }
