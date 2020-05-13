@@ -2,7 +2,7 @@ require "test_helper"
 
 describe PassengersController do
   let (:passenger) {
-    Passenger.create name: "sample passenger", phone: "#123-345-4567"
+    Passenger.create(name: "sample passenger", phone_number: "#123-345-4567")
   }
  
   describe "index" do
@@ -73,8 +73,8 @@ describe PassengersController do
       }.must_change "Passenger.count", 1
       
       new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
-      expect(new_passenger.description).must_equal passenger_hash[:passenger][:description]
-      expect(new_passenger.completed_at).must_equal passenger_hash[:passenger][:completed_at]
+      expect(new_passenger.name).must_equal passenger_hash[:passenger][:name]
+      expect(new_passenger.phone_number).must_equal passenger_hash[:passenger][:phone_number]
       
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
@@ -118,7 +118,7 @@ describe PassengersController do
       }.must_differ "Passenger.count", 0
       
       updated_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
-      expect(updated_passenger.description).must_equal passenger_hash[:passenger][:description]
+      expect(updated_passenger.phone_number).must_equal passenger_hash[:passenger][:phone_number]
       expect(updated_passenger.name).must_equal passenger_hash[:passenger][:name]
       
       must_redirect_to passenger_path(updated_passenger.id)
@@ -150,7 +150,7 @@ describe PassengersController do
         delete passenger_path(passenger[:id])
       }.must_differ "Passenger.count", -1
             
-      must_redirect_to root_path
+      must_redirect_to passengers_path
     end
 
     it "does not change anything when invalid id is provided and redirects to root" do

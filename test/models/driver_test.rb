@@ -24,10 +24,9 @@ describe Driver do
     it "can have many trips" do
       # Arrange
       new_driver.save
-      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      new_passenger = Passenger.create(name: "Kari", phone_number: "111-111-1211")
       trip_1 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
       trip_2 = Trip.create(driver_id: new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334)
-​
       # Assert
       expect(new_driver.trips.count).must_equal 2
       new_driver.trips.each do |trip|
@@ -61,7 +60,8 @@ describe Driver do
   # Tests for methods you create should go here
   describe "custom methods" do
     describe "average rating" do
-      # Your code here
+      it "must return the average rating of all trips/drivers"
+
     end
 
     describe "total earnings" do

@@ -7,7 +7,7 @@ class PassengersController < ApplicationController
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
     if @passenger.nil?
-      head :not_found
+      redirect_to passenger_path
       return
     end
   end
@@ -32,7 +32,7 @@ class PassengersController < ApplicationController
   def edit
     @passenger = Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      head :not_found
+      redirect_to root_path
       return
     end
   end
@@ -40,7 +40,7 @@ class PassengersController < ApplicationController
   def update
     @passenger= Passenger.find_by(id: params[:id])
     if @passenger.nil?
-      head :not_found
+      redirect_to root_path
       return 
     elsif @passenger.update(
       name: params[:passenger][:name],

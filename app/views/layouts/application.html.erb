@@ -12,12 +12,12 @@
 
 <body>
     <h1>Ada Ride Share</h1>
-    <div class="dropdown">
-        <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown  m-0 bg-primary d-inline-block">
+        <button class=" btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false">
             <%= link_to "Home", root_path %>
         </button>
     </div>
-    <div class="dropdown">
+    <div class="dropdown m-1 bg-primary d-inline-block">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Drivers
         </button>
@@ -26,7 +26,7 @@
             <%= link_to "Add Driver", new_driver_path, class: "dropdown-item" %>
         </div>
     </div>
-    <div class="dropdown">
+    <div class="dropdown m-2 bg-primary d-inline-block">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Passengers
         </button>

@@ -1,45 +1,43 @@
-<h3>Edit trip:</p>
+<h3>Edit trip:</h3>
 
-
-    <% if @trip.errors.any? %>
-    <ul class="errors">
-        <% @trip.errors.each do |column, message| %>
-        <li>
-            <strong><%= column.capitalize %></strong> <%= message %>
-        </li>
-        <% end %>
-    </ul>
+<% if @trip.errors.any? %>
+<ul class="errors">
+    <% @trip.errors.each do |column, message| %>
+    <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+    </li>
     <% end %>
+</ul>
+<% end %>
 
+<%= form_with model: @trip, class: 'create-trip' do |f| %>
 
-    <%= form_with model: @trip, class: 'create-trip' do |f| %>
+<div>
+    <%= f.label :date %>
+    <%= f.date_field :date, value: @trip.date %>
+</div>
 
-    <div>
-        <%= f.label :date %>
-        <%= f.date_field :date, value: @trip.date %>
-    </div>
+<div>
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+</div>
 
-    <div>
-        <%= f.label :cost %>
-        <%= f.text_field :cost %>
-    </div>
+<div>
+    <%= f.label :rating %>
+    <%= f.select :rating, [1, 2, 3, 4, 5] %>
+</div>
 
-    <div>
-        <%= f.label :rating %>
-        <%= f.select :rating, [1, 2, 3, 4, 5] %>
-    </div>
+<div>
+    <%= f.label :passenger_id %>
+    <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
+</div>
 
-    <div>
-        <%= f.label :passenger_id %>
-        <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
-    </div>
+<div>
+    <%= f.label :driver_id %>
+    <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
+</div>
 
-    <div>
-        <%= f.label :driver_id %>
-        <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id] } %>
-    </div>
-
-    <div>
-        <%= f.submit "Submit edits", class: "trip_button" %>
-    </div>
-    <% end %>
+<div>
+    <%= f.submit "Submit edits", class: "trip_button" %>
+</div>
+<% end %>
