@@ -8,13 +8,11 @@ Rails.application.routes.draw do
 
   # TODO: clean up routes that are unnecessary
   # resources :applications
-  resources :trips # maybe not necessary
+  resources :trips, except: [:index]
   resources :passengers do 
-    resources :trips
+    resources :trips, only: [:create]
   end
-  resources :drivers do 
-    resources :trips , only: [:index]
-  end
+  resources :drivers 
 
   patch 'trip/:id/rating', to: 'trips#update_trip_rating', as: 'update_trip_rating'
   patch 'driver/:id/available', to: 'drivers#update_driver_status', as: 'update_driver_status'
